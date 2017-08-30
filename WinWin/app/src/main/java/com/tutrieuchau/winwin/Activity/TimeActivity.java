@@ -1,8 +1,12 @@
 package com.tutrieuchau.winwin.Activity;
 
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -16,6 +20,8 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.tutrieuchau.winwin.Adapter.TimeSpendAdapter;
+import com.tutrieuchau.winwin.Model.TimeSpend;
 import com.tutrieuchau.winwin.R;
 
 import java.util.ArrayList;
@@ -30,22 +36,43 @@ public class TimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
+        // Time Spent List View
+        ArrayList<TimeSpend> timeSpends = new ArrayList<>();
+        TimeSpend timeSpend = new TimeSpend("Sleep",R.color.aqua,70,R.drawable.ic_time_eat);
+        timeSpends.add(timeSpend);
+        TimeSpend timeSpend1 = new TimeSpend("Work",R.color.bisque,70,R.drawable.ic_time_eat);
+        timeSpends.add(timeSpend1);
+        TimeSpend timeSpend2 = new TimeSpend("Learning English",R.color.tomato,70,R.drawable.ic_time_eat);
+        timeSpends.add(timeSpend2);
+        timeSpends.add(timeSpend2);
+        timeSpends.add(timeSpend2);
+        timeSpends.add(timeSpend2);
+        timeSpends.add(timeSpend2);
+
+        TimeSpendAdapter timeSpendAdapter = new TimeSpendAdapter(this,timeSpends);
+        ListView listView = (ListView) findViewById(R.id.timeListView);
+        listView.setAdapter(timeSpendAdapter);
+
+
+        // Pie charts setting
         mainPieChartLayout = (RelativeLayout) findViewById(R.id.mainPieChart);
-        pieChart = new PieChart(this);
-        mainPieChartLayout.addView(pieChart);
-        mainPieChartLayout.setBackgroundColor(Color.LTGRAY);
+        pieChart = (PieChart) findViewById(R.id.timePieChart);
+        int scrHeight = Resources.getSystem().getDisplayMetrics().widthPixels-200;
+        pieChart.setMinimumHeight(scrHeight);
+        pieChart.setMinimumWidth(scrHeight);
+
 
         pieChart.setUsePercentValues(true);
         Description description = new Description();
-        description.setText("Code Editor");
+        description.setText("");
         pieChart.setDescription(description);
-
+        // center hole setting
         pieChart.setDrawHoleEnabled(true);
-        pieChart.setHoleRadius(7);
-        pieChart.setTransparentCircleRadius(10);
+        pieChart.setHoleRadius(20);
+        pieChart.setTransparentCircleRadius(30);// border size
 
         pieChart.setRotationAngle(0);
-        pieChart.setRotationEnabled(true);
+        pieChart.setRotationEnabled(true);// Router
 
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
@@ -82,7 +109,7 @@ public class TimeActivity extends AppCompatActivity {
             xVals.add(xdata[i]);
 
         }
-        PieDataSet pieDataSet = new PieDataSet(yVals,"Code edit");
+        PieDataSet pieDataSet = new PieDataSet(yVals,"");
         pieDataSet.setSliceSpace(3);
         pieDataSet.setSelectionShift(5);
 

@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.TimeActivity"></activity>
+        <activity android:name=".Activity.TimeActivity" />
+        <activity android:name=".Activity.TodoActivity"></activity>
     </application>
 
 </manifest>

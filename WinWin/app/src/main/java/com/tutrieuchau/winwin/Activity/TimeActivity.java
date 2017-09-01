@@ -1,16 +1,14 @@
 package com.tutrieuchau.winwin.Activity;
 
+import android.app.Dialog;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -35,9 +33,8 @@ import com.tutrieuchau.winwin.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimeActivity extends AppCompatActivity implements View.OnClickListener{
+public class TimeActivity extends BaseActivity implements View.OnClickListener{
     private  PieChart pieChart;
-    private RelativeLayout mainPieChartLayout;
     private float[] ydata = {5,10,15,30,40};
     private String[] xdata = {"Android Studio","Xcode","Visual Studio","Notepad++","Edit Text"};
     @Override
@@ -46,11 +43,11 @@ public class TimeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_time);
         // Time Spent List View
         ArrayList<TimeSpend> timeSpends = new ArrayList<>();
-        TimeSpend timeSpend = new TimeSpend("Sleep",R.color.antiquewhite,70,R.drawable.ic_time_eat);
+        TimeSpend timeSpend = new TimeSpend("Sleep",R.color.red,70,R.drawable.ic_sleep);
         timeSpends.add(timeSpend);
-        TimeSpend timeSpend1 = new TimeSpend("Work",R.color.bisque,50,R.drawable.ic_time_eat);
+        TimeSpend timeSpend1 = new TimeSpend("Work",R.color.blanchedalmond,50,R.drawable.ic_sleep2);
         timeSpends.add(timeSpend1);
-        TimeSpend timeSpend2 = new TimeSpend("Learning English",R.color.tomato,20,R.drawable.ic_time_eat);
+        TimeSpend timeSpend2 = new TimeSpend("Learning English",R.color.tomato,20,R.drawable.ic_extension);
         timeSpends.add(timeSpend2);
         timeSpends.add(timeSpend1);
         timeSpends.add(timeSpend);
@@ -70,7 +67,7 @@ public class TimeActivity extends AppCompatActivity implements View.OnClickListe
                 editItem.setBackground(new ColorDrawable(getResources().getColor(R.color.goldenrod)));
                 editItem.setIcon(R.drawable.ic_time_edit);
                 // set item width
-                editItem.setWidth(80);
+                editItem.setWidth(100);
                 // set item title font color
                 editItem.setTitleColor(Color.WHITE);
                 // add to menu
@@ -83,7 +80,7 @@ public class TimeActivity extends AppCompatActivity implements View.OnClickListe
                 deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
                         0x3F, 0x25)));
                 // set item width
-                deleteItem.setWidth(80);
+                deleteItem.setWidth(100);
 
                 // set a icon
                 deleteItem.setIcon(R.drawable.ic_time_trash);
@@ -109,7 +106,6 @@ public class TimeActivity extends AppCompatActivity implements View.OnClickListe
         FloatingActionButton btnAdd = (FloatingActionButton) findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);
         // Pie charts setting
-        mainPieChartLayout = (RelativeLayout) findViewById(R.id.mainPieChart);
         pieChart = (PieChart) findViewById(R.id.timePieChart);
         int scrHeight = Resources.getSystem().getDisplayMetrics().widthPixels-200;
         pieChart.setMinimumHeight(scrHeight);
@@ -208,6 +204,17 @@ public class TimeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        if(v.getId() == R.id.btnAdd){
+            showAddDialog();
+        }
         //TODO:Add new Diablog
+    }
+    private void showAddDialog(){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.time_add_dialog);
+        int width = (getResources().getDisplayMetrics().widthPixels);
+        dialog.getWindow().setLayout(width,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.show();
     }
 }

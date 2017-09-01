@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.tutrieuchau.winwin.Activity.TimeActivity;
 import com.tutrieuchau.winwin.Activity.TodoActivity;
 
+import java.sql.Time;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(MainActivity.this,TodoActivity.class);
+        Intent intent = new Intent(MainActivity.this,TimeActivity.class);
         startActivity(intent);
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

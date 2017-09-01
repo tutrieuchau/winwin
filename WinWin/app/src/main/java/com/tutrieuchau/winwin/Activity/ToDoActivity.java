@@ -13,7 +13,7 @@ import com.tutrieuchau.winwin.R;
 
 import java.util.ArrayList;
 
-public class TodoActivity extends AppCompatActivity implements View.OnClickListener{
+public class TodoActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

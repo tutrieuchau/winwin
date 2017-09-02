@@ -6,16 +6,22 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.tutrieuchau.winwin.Activity.TimeActivity;
+import com.tutrieuchau.winwin.MainActivity;
 import com.tutrieuchau.winwin.Model.TimeSpend;
 import com.tutrieuchau.winwin.R;
 
@@ -59,6 +65,13 @@ public class TimeSpendAdapter extends ArrayAdapter<TimeSpend> implements View.On
         return convertView;
     }
     private String minuteToText(int minute){
-        return  minute/60!=0?minute/60+"h":"" + minute%60;
+        String result = "";
+        if(minute/60 != 0){
+            result += minute/60+"h";
+        }
+        if(minute%60 != 0){
+            result+= minute%60+"m";
+        }
+        return result;
     }
 }

@@ -29,6 +29,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.tutrieuchau.winwin.Adapter.TimeSpendAdapter;
 import com.tutrieuchau.winwin.Model.TimeSpend;
 import com.tutrieuchau.winwin.R;
+import com.tutrieuchau.winwin.Support.AddTimeDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -210,11 +211,7 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
         //TODO:Add new Diablog
     }
     private void showAddDialog(){
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.time_add_dialog);
-        int width = (getResources().getDisplayMetrics().widthPixels);
-        dialog.getWindow().setLayout(width,ViewGroup.LayoutParams.WRAP_CONTENT);
+        final AddTimeDialog dialog = new AddTimeDialog(this);
         dialog.show();
     }
 }

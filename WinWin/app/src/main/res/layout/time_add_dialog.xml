@@ -38,24 +38,117 @@
                 android:textSize="14sp"
                 android:id="@+id/title"
                 android:textStyle="bold"
-                android:text="Add New Activity"
+                android:text="@string/time_add_dialog_title"
                 />
         </RelativeLayout>
 
     </RelativeLayout>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:orientation="vertical"
         >
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/btn_rectangle"
-            android:src="@drawable/ic_paint"
-            android:padding="7dp"
-            android:backgroundTint="@color/themeLight"
-            android:layout_marginLeft="20dp"
-            />
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/btn_rectangle"
+                android:src="@drawable/ic_paint"
+                android:padding="12dp"
+                android:id="@+id/imgThumbnail"
+                android:backgroundTint="@color/themeLight"
+                android:layout_marginLeft="20dp"
+                />
+            <!--<EditText-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=""-->
+                <!--android:hint="Name Of Activity"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--/>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:id="@+id/spName"
+                    >
+                </Spinner>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:id="@+id/etName"
+                    android:maxLines="2"
+                    android:maxLength="100"
+                    android:hint=""
+                    />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/npHour"
+                >
+
+            </NumberPicker>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textSize="30sp"
+                android:layout_gravity="center_vertical"
+                android:text=":"/>
+            <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/npMinute">
+            </NumberPicker>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:text="Cancel"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                android:background="@color/dimgray"
+                android:id="@+id/btnCancel"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:text="ADD"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                android:background="@color/themeLight"
+                android:id="@+id/btnOK"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

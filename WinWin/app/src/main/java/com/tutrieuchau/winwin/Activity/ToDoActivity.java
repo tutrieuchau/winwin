@@ -1,10 +1,8 @@
 package com.tutrieuchau.winwin.Activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.tutrieuchau.winwin.Adapter.TodoAdapter;

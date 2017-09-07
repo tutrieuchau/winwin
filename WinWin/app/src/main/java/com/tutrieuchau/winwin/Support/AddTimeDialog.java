@@ -2,7 +2,10 @@ package com.tutrieuchau.winwin.Support;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.tutrieuchau.winwin.Model.TimeSpend;
 import com.tutrieuchau.winwin.R;
@@ -34,9 +38,12 @@ public class AddTimeDialog extends Dialog implements View.OnClickListener,Adapte
     private int hour;
     private int minute;
     private int selectedPosition;
-    public AddTimeDialog(Context context){
+    private OnAddTimeDialogResult dialogResult;
+    private TimeSpend timeSpend;
+    public AddTimeDialog(Context context,TimeSpend timeSpend){
         super(context);
         this.context = context;
+        this.timeSpend = timeSpend;
     }
 
     @Override
@@ -54,7 +61,6 @@ public class AddTimeDialog extends Dialog implements View.OnClickListener,Adapte
         hour = 0;
         minute = 0;
         selectedPosition = 0;
-
         etName = (EditText)findViewById(R.id.etName);
         etName.setEnabled(false);
         //Number Picker
@@ -94,6 +100,18 @@ public class AddTimeDialog extends Dialog implements View.OnClickListener,Adapte
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
         spinner.setOnItemSelectedListener(this);
+        //For Edit
+        if(timeSpend != null){
+            spinner.setSelection(timeSpend.position);
+            hour = timeSpend.spendTime/60;
+            minute = timeSpend.spendTime%60;
+            npHour.setValue(hour);
+            npMinute.setValue(minute/10);
+            if(timeSpend.position == Utils.DEFAULT_THUMBNAIL_LIST_TITLE.length -1){
+                etName.setText(timeSpend.title);
+                etName.setEnabled(true);
+            }
+        }
 
     }
 
@@ -102,9 +120,24 @@ public class AddTimeDialog extends Dialog implements View.OnClickListener,Adapte
         if(v.getId() == R.id.btnCancel){
             this.dismiss();
         }else if(v.getId() == R.id.btnOK){
-            //TODO: Add new Activity
             int time = hour*60 + minute;
-            TimeSpend timeSpend = new TimeSpend(Utils.DEFAULT_THUMBNAIL_LIST_TITLE[selectedPosition],Utils.DEFAULT_THUMBNAIL_LIST_COLOR[selectedPosition],time,Utils.DEFAULT_THUMBNAIL_LIST_ICON[selectedPosition]);
+            if(time == 0){
+                showErrorMessage(context.getString(R.string.time_add_dialog_time_invalid_error));
+            }else if(selectedPosition == Utils.DEFAULT_THUMBNAIL_LIST_TITLE.length - 1){
+                if(etName.getText().toString().equals("")){
+                    showErrorMessage(context.getString(R.string.time_add_dialog_name_invalid_error));
+                }else{
+                    dismiss();
+                    //TODO:Show select ICON
+                }
+            }else{
+                TimeSpend timeSpend = new TimeSpend(Utils.DEFAULT_THUMBNAIL_LIST_TITLE[selectedPosition],Utils.DEFAULT_THUMBNAIL_LIST_COLOR[selectedPosition],time,Utils.DEFAULT_THUMBNAIL_LIST_ICON[selectedPosition]);
+                timeSpend.position = selectedPosition;
+                dialogResult.finish(timeSpend);
+                dismiss();
+            }
+
+
         }
     }
 
@@ -128,5 +161,18 @@ public class AddTimeDialog extends Dialog implements View.OnClickListener,Adapte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+    private void showErrorMessage(String msg){
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
+        bottomSheetDialog.setContentView(R.layout.error_fragment);
+        TextView textView = (TextView) bottomSheetDialog.findViewById(R.id.errMsg);
+        textView.setText(msg);
+        bottomSheetDialog.show();
+    }
+    public void setDialogResult(OnAddTimeDialogResult dialogResult){
+        this.dialogResult = dialogResult;
+    }
+    public interface OnAddTimeDialogResult{
+        void finish(TimeSpend timeSpend);
     }
 }

@@ -6,4 +6,10 @@
 
     <!--Time Activity-->
     <string name="time_add_dialog_title">Add Activity</string>
+    <string name="time_add_dialog_time_invalid_error">Spend time is invalid</string>
+    <string name="time_add_dialog_name_invalid_error">Activity name is empty</string>
+    <string name="time_add_dialog_add_success">Created success</string>
+    <string name="time_add_dialog_edit_success">Update success</string>
+
+
 </resources>

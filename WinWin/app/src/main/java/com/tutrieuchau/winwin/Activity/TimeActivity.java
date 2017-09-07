@@ -1,14 +1,12 @@
 package com.tutrieuchau.winwin.Activity;
 
-import android.app.Dialog;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -29,6 +27,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.tutrieuchau.winwin.Adapter.TimeSpendAdapter;
 import com.tutrieuchau.winwin.Model.TimeSpend;
 import com.tutrieuchau.winwin.R;
+import com.tutrieuchau.winwin.Service.SharePreferencesService;
 import com.tutrieuchau.winwin.Support.AddTimeDialog;
 
 import java.util.ArrayList;
@@ -38,22 +37,20 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
     private  PieChart pieChart;
     private float[] ydata = {5,10,15,30,40};
     private String[] xdata = {"Android Studio","Xcode","Visual Studio","Notepad++","Edit Text"};
+    private Context context;
+    private ArrayList<TimeSpend> timeSpends;
+    private TimeSpendAdapter timeSpendAdapter;
+    private SharePreferencesService sharePreferencesService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
+        this.context = getApplicationContext();
+        sharePreferencesService = new SharePreferencesService(this);
+        timeSpends = sharePreferencesService.getSpendTimeList();
         // Time Spent List View
-        ArrayList<TimeSpend> timeSpends = new ArrayList<>();
-        TimeSpend timeSpend = new TimeSpend("Sleep",R.color.red,70,R.drawable.ic_sleep);
-        timeSpends.add(timeSpend);
-        TimeSpend timeSpend1 = new TimeSpend("Work",R.color.blanchedalmond,50,R.drawable.ic_sleep2);
-        timeSpends.add(timeSpend1);
-        TimeSpend timeSpend2 = new TimeSpend("Learning English",R.color.tomato,20,R.drawable.ic_extension);
-        timeSpends.add(timeSpend2);
-        timeSpends.add(timeSpend1);
-        timeSpends.add(timeSpend);
-
-        final TimeSpendAdapter timeSpendAdapter = new TimeSpendAdapter(this,timeSpends);
+        timeSpends = new ArrayList<>();
+        timeSpendAdapter = new TimeSpendAdapter(this,timeSpends);
         SwipeMenuListView listView = (SwipeMenuListView) findViewById(R.id.timeListView);
         listView.setAdapter(timeSpendAdapter);
 
@@ -95,9 +92,14 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index){
                     case 0:
-                        timeSpendAdapter.clear();
+                        //on Edit
+                        showEditDialog(position);
                         break;
                     case 1:
+                        // on Delete
+                        sharePreferencesService.removeItemInSpendTimeList(position);
+                        timeSpends.remove(position);
+                        timeSpendAdapter.notifyDataSetChanged();
                         break;
                 }
                 return  false;
@@ -111,7 +113,6 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
         int scrHeight = Resources.getSystem().getDisplayMetrics().widthPixels-200;
         pieChart.setMinimumHeight(scrHeight);
         pieChart.setMinimumWidth(scrHeight);
-
 
         pieChart.setUsePercentValues(true);
         Description description = new Description();
@@ -152,13 +153,6 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
         List<PieEntry> yVals = new ArrayList<>();
         for (int i = 0; i < ydata.length ; i ++){
             yVals.add(new PieEntry(ydata[i],i));
-
-        }
-        ArrayList<String> xVals = new ArrayList<>();
-
-        for(int i = 0; i < xdata.length ; i++){
-            xVals.add(xdata[i]);
-
         }
         PieDataSet pieDataSet = new PieDataSet(yVals,"");
         pieDataSet.setSliceSpace(3);
@@ -200,7 +194,6 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
 
         pieChart.invalidate();
 
-
     }
 
     @Override
@@ -208,10 +201,35 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
         if(v.getId() == R.id.btnAdd){
             showAddDialog();
         }
-        //TODO:Add new Diablog
     }
     private void showAddDialog(){
-        final AddTimeDialog dialog = new AddTimeDialog(this);
+        final AddTimeDialog dialog = new AddTimeDialog(this,null);
+        dialog.setDialogResult(new AddTimeDialog.OnAddTimeDialogResult() {
+            @Override
+            public void finish(TimeSpend timeSpend) {
+                //TODO:Add New
+                Toast.makeText(context,context.getString(R.string.time_add_dialog_add_success),Toast.LENGTH_LONG).show();
+                timeSpends.add(timeSpend);
+                timeSpendAdapter.notifyDataSetChanged();
+                sharePreferencesService.addItemToSpendTimeList(timeSpend);
+            }
+        });
+        dialog.show();
+    }
+    private void showEditDialog(final int position){
+        TimeSpend timeSpend = this.timeSpends.get(position);
+        final AddTimeDialog dialog = new AddTimeDialog(this,timeSpend);
+        dialog.setDialogResult(new AddTimeDialog.OnAddTimeDialogResult() {
+            @Override
+            public void finish(TimeSpend timeSpend) {
+                Toast.makeText(context,getString(R.string.time_add_dialog_edit_success),Toast.LENGTH_LONG).show();
+                timeSpends.remove(position);
+                timeSpends.add(position,timeSpend);
+                timeSpendAdapter.notifyDataSetChanged();
+                ///
+                sharePreferencesService.updateSpendTimeList(position,timeSpend);
+            }
+        });
         dialog.show();
     }
 }

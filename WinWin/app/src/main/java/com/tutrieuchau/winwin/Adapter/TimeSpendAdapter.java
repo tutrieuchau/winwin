@@ -3,6 +3,7 @@ package com.tutrieuchau.winwin.Adapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -56,7 +57,9 @@ public class TimeSpendAdapter extends ArrayAdapter<TimeSpend> implements View.On
 
         ImageView thumbnails = (ImageView) convertView.findViewById(R.id.timeThumbnail);
         thumbnails.setImageResource(timeSpend.icon);
-        thumbnails.setBackgroundTintList(ContextCompat.getColorStateList(context,timeSpend.color));
+        Drawable drawable = context.getResources().getDrawable(R.drawable.btn_rectangle);
+        drawable.setColorFilter(context.getResources().getColor(timeSpend.color), PorterDuff.Mode.SRC_IN);
+        thumbnails.setBackgroundDrawable(drawable);
 
         TextView title = (TextView) convertView.findViewById(R.id.tvTimeTitle);
         title.setText(timeSpend.title);

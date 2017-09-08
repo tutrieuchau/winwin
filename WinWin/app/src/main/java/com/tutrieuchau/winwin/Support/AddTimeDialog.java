@@ -3,10 +3,15 @@ package com.tutrieuchau.winwin.Support;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.ColorFilter;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -32,7 +37,7 @@ import java.util.ArrayList;
 public class AddTimeDialog extends Dialog implements View.OnClickListener,AdapterView.OnItemSelectedListener {
     private Context context;
     private EditText etName;
-    private ImageView thumbnail;
+    private AppCompatImageView thumbnail;
     private NumberPicker npHour;
     private NumberPicker npMinute;
     private int hour;
@@ -88,7 +93,7 @@ public class AddTimeDialog extends Dialog implements View.OnClickListener,Adapte
             }
         });
         // ImageView
-        thumbnail = (ImageView)findViewById(R.id.imgThumbnail);
+        thumbnail = (AppCompatImageView) findViewById(R.id.imgThumbnail);
         // Spinner
         final Spinner spinner = (Spinner) findViewById(R.id.spName);
 
@@ -148,13 +153,17 @@ public class AddTimeDialog extends Dialog implements View.OnClickListener,Adapte
         if(selected.equals("Other")){
             etName.setEnabled(true);
             thumbnail.setImageResource(R.drawable.ic_extension);
-            thumbnail.setBackgroundTintList(ContextCompat.getColorStateList(context,R.color.themeLight));
+            Drawable drawable = context.getResources().getDrawable(R.drawable.btn_rectangle);
+            drawable.setColorFilter(context.getResources().getColor(R.color.themeLight), PorterDuff.Mode.SRC_IN);
+            thumbnail.setBackgroundDrawable(drawable);
         }else{
             etName.setText("");
             etName.setEnabled(false);
             // change thumbnail
             thumbnail.setImageResource(Utils.DEFAULT_THUMBNAIL_LIST_ICON[position]);
-            thumbnail.setBackgroundTintList(ContextCompat.getColorStateList(context,Utils.DEFAULT_THUMBNAIL_LIST_COLOR[position]));
+            Drawable drawable = context.getResources().getDrawable(R.drawable.btn_rectangle);
+            drawable.setColorFilter(context.getResources().getColor(Utils.DEFAULT_THUMBNAIL_LIST_COLOR[position]), PorterDuff.Mode.SRC_IN);
+            thumbnail.setBackgroundDrawable(drawable);
         }
     }
 

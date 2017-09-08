@@ -30,6 +30,8 @@ import com.tutrieuchau.winwin.R;
 import com.tutrieuchau.winwin.Service.SharePreferencesService;
 import com.tutrieuchau.winwin.Support.AddTimeDialog;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,9 +49,8 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
         setContentView(R.layout.activity_time);
         this.context = getApplicationContext();
         sharePreferencesService = new SharePreferencesService(this);
-        timeSpends = sharePreferencesService.getSpendTimeList();
         // Time Spent List View
-        timeSpends = new ArrayList<>();
+        timeSpends = sharePreferencesService.getSpendTimeList();
         timeSpendAdapter = new TimeSpendAdapter(this,timeSpends);
         SwipeMenuListView listView = (SwipeMenuListView) findViewById(R.id.timeListView);
         listView.setAdapter(timeSpendAdapter);
@@ -100,6 +101,7 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
                         sharePreferencesService.removeItemInSpendTimeList(position);
                         timeSpends.remove(position);
                         timeSpendAdapter.notifyDataSetChanged();
+                        addDataToPieChart();
                         break;
                 }
                 return  false;
@@ -124,7 +126,7 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
         pieChart.setTransparentCircleRadius(30);// border size
 
         pieChart.setRotationAngle(0);
-        pieChart.setRotationEnabled(true);// Router
+        pieChart.setRotationEnabled(false);// Router
 
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
@@ -151,35 +153,21 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
     }
     private void addDataToPieChart(){
         List<PieEntry> yVals = new ArrayList<>();
-        for (int i = 0; i < ydata.length ; i ++){
-            yVals.add(new PieEntry(ydata[i],i));
+        ArrayList<Integer> colors = new ArrayList<>();
+        float freePercent = 100;
+        for(int i = 0;i<timeSpends.size(); i ++){
+            float currentPercent = round(((float) timeSpends.get(i).spendTime/24/60)*100,2);
+            freePercent = freePercent - currentPercent;
+            yVals.add(new PieEntry(currentPercent,timeSpends.get(i).title));
+            colors.add(context.getResources().getColor(timeSpends.get(i).color));
         }
+        yVals.add(new PieEntry(freePercent,"Free Time"));
+        colors.add(context.getResources().getColor(R.color.themeOff));
         PieDataSet pieDataSet = new PieDataSet(yVals,"");
         pieDataSet.setSliceSpace(3);
         pieDataSet.setSelectionShift(5);
 
-        ArrayList<Integer> colors = new ArrayList<>();
-        for (int c: ColorTemplate.VORDIPLOM_COLORS){
-            colors.add(c);
-        }
-
-        for (int c: ColorTemplate.JOYFUL_COLORS){
-            colors.add(c);
-        }
-
-        for (int c: ColorTemplate.COLORFUL_COLORS){
-            colors.add(c);
-        }
-
-        for (int c: ColorTemplate.LIBERTY_COLORS){
-            colors.add(c);
-        }
-
-        for (int c: ColorTemplate.PASTEL_COLORS){
-            colors.add(c);
-        }
-
-        colors.add(ColorTemplate.getHoloBlue());
+//        colors.add(ColorTemplate.getHoloBlue());
 
         pieDataSet.setColors(colors);
 
@@ -194,6 +182,13 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
 
         pieChart.invalidate();
 
+    }
+    public static float round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.floatValue();
     }
 
     @Override
@@ -212,6 +207,8 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
                 timeSpends.add(timeSpend);
                 timeSpendAdapter.notifyDataSetChanged();
                 sharePreferencesService.addItemToSpendTimeList(timeSpend);
+                // update chart data
+                addDataToPieChart();
             }
         });
         dialog.show();
@@ -228,6 +225,7 @@ public class TimeActivity extends BaseActivity implements View.OnClickListener{
                 timeSpendAdapter.notifyDataSetChanged();
                 ///
                 sharePreferencesService.updateSpendTimeList(position,timeSpend);
+                addDataToPieChart();
             }
         });
         dialog.show();

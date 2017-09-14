@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_content_group">
+        <item
+            android:id="@+id/nav_mission"
+            android:icon="@drawable/ic_mission"
+            android:title="@string/nav_mission_vn" />
+        <item
+            android:id="@+id/nav_reminder"
+            android:icon="@drawable/ic_task"
+            android:title="@string/nav_reminder_vn" />
+        <item
+            android:id="@+id/nav_analyse"
+            android:icon="@drawable/ic_analyse"
+            android:title="@string/nav_analysis_vn" />
+        <item
+            android:id="@+id/nav_reward"
+            android:icon="@drawable/ic_reward"
+            android:title="@string/nav_reward_vn" />
+
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_wait1"
+            android:title="@string/nav_history_vn" />
+
+    </group>
+    <group android:id="@+id/menu_setting_group"
+        android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_setting"
+                android:title="@string/nav_setting_vn" />
+        <item
+            android:id="@+id/nav_love"
+            android:icon="@drawable/ic_heart"
+            android:title="@string/nav_love_vn" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_help"
+                android:title="@string/nav_help_vn" />
+    </group>
+
+
+
+</menu>

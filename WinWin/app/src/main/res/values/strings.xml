@@ -10,6 +10,34 @@
     <string name="time_add_dialog_name_invalid_error">Activity name is empty</string>
     <string name="time_add_dialog_add_success">Created success</string>
     <string name="time_add_dialog_edit_success">Update success</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Navigation Drawers menu labels English-->
+    <string name="nav_mission_en">Mission</string>
+    <string name="nav_reminder_en">Reminder</string>
+    <string name="nav_analysis_en">Analysis</string>
+    <string name="nav_history_en">History</string>
+    <string name="nav_help_en">Help</string>
+    <string name="nav_reward_en">Reward</string>
+    <string name="nav_setting_en">Setting</string>
+
+    <!-- Navigation Drawers menu labels Vietnamese-->
+    <string name="nav_mission_vn">Mục Tiêu</string>
+    <string name="nav_reminder_vn">Nhắc Nhở</string>
+    <string name="nav_analysis_vn">Phân Tích</string>
+    <string name="nav_history_vn">Lịch Sử</string>
+    <string name="nav_help_vn">Trợ Giúp</string>
+    <string name="nav_reward_vn">Phần Thưởng</string>
+    <string name="nav_setting_vn">Cài Đặt</string>
+    <string name="nav_love_vn">Yêu Thích</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -7,8 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.tutrieuchau.winwin.Adapter.ReminderAdapter;
+import com.tutrieuchau.winwin.Adapter.TodoAdapter;
+import com.tutrieuchau.winwin.Model.Reminder;
+import com.tutrieuchau.winwin.Model.Todo;
 import com.tutrieuchau.winwin.R;
+import com.tutrieuchau.winwin.Utils.Utils;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,7 +73,16 @@ public class ReminderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reminder, container, false);
+        View view = inflater.inflate(R.layout.fragment_reminder, container, false);
+        ListView listView = (ListView) view.findViewById(R.id.reminderListView);
+        Reminder reminder = new Reminder("Go to the market with Jon and then go to Maria Home","14:30", R.drawable.ic_shopping,R.color.red,3, Utils.REMINDER_LEVEL.LOW);
+        ArrayList<Reminder> arrayList = new ArrayList<>();
+        arrayList.add(reminder);
+        arrayList.add(new Reminder("Bài tập tiếng Nhật","20:30", R.drawable.ic_learning,R.color.darkgreen,1, Utils.REMINDER_LEVEL.NORMAL));
+        arrayList.add(new Reminder("Cắt Tóc","16:14", R.drawable.ic_tag_faces,R.color.blue,1, Utils.REMINDER_LEVEL.HIGH));
+        ReminderAdapter reminderAdapter = new ReminderAdapter(this.getContext(),arrayList);
+        listView.setAdapter(reminderAdapter);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -78,12 +95,12 @@ public class ReminderFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override

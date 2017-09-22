@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/background_shadow"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/missionItemHeader">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_oval"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_graduate"
+            android:id="@+id/imgThumbnail"
+            />
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_time_item_modifier"
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:id="@+id/btnModifier"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:maxLines="3"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="Integer ut purus ac "
+            android:layout_toRightOf="@+id/imgThumbnail"
+            android:layout_toLeftOf="@+id/btnModifier"
+            android:id="@+id/edtTitle"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:maxLines="3"
+            android:textSize="14sp"
+            android:textColor="@color/themeOff"
+            android:text="Cras ipsum. Vestibulum pretium, lectus nec venenatis volutpat, purus lectus ultrices risus, a condimentum risus mi et quam. Pellentesque auctor fringilla neque"
+            android:layout_toRightOf="@+id/imgThumbnail"
+            android:layout_toLeftOf="@+id/btnModifier"
+            android:layout_below="@+id/edtTitle"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/mission_progress_chart_background"
+            android:id="@+id/missionMainProgress"
+            >
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:background="@color/themeLight"
+                android:id="@+id/missionComplete"
+                >
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/missionComplete"
+                android:text="40%"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                />
+        </RelativeLayout>
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/missionMainProgress">
+
+        </com.github.mikephil.charting.charts.HorizontalBarChart>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/layout_reward"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/btn_oval"
+                android:scaleType="fitXY"
+                android:padding="5dp"
+                android:src="@drawable/ic_color_reward" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reward :"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nulla mauris odio, vehicula in"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/layout_reward"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/btn_oval"
+                android:scaleType="fitXY"
+                android:padding="5dp"
+                android:src="@drawable/ic_color_alarm" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alarm :"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Curabitur facilisis sem at nisi laoreet placerat"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -12,4 +12,5 @@ public class Utils {
     public static final int[] DEFAULT_THUMBNAIL_LIST_COLOR = {R.color.olivedrab,R.color.slateblue,R.color.dimgray,R.color.indigo,R.color.darkslateblue,R.color.royalblue,R.color.darkslategray,R.color.darkgreen,R.color.themeLight,R.color.colorPrimary,R.color.yellow,R.color.aliceblue,R.color.slategray,R.color.darkred,R.color.darkolivegreen,R.color.salmon,R.color.purple,R.color.blueviolet,R.color.darkred,R.color.chartreuse,R.color.salmon,R.color.darkslateblue,R.color.royalblue,R.color.darkslategray,R.color.darkgreen,R.color.themeLight};
     public static final String[] TOOL_BAR_TITLE ={"","","","",""};
     public enum REMINDER_LEVEL{HIGH,NORMAL,LOW}
+    public enum DEFAULT_ICON{LEARNING}
 }

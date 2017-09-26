@@ -92,24 +92,6 @@ public class MissionAdapter extends ArrayAdapter<Mission> {
         if(!alarms.get(6).active){
             sun.setVisibility(View.GONE);
         }
-        //Detail Progress
-        HorizontalBarChart detailProgress = (HorizontalBarChart)convertView.findViewById(R.id.missionDetailProgress);
-//        detailProgress.getXAxis().setEnabled(false);
-//        detailProgress.getXAxis().setDrawLabels(false);
-//        detailProgress.getAxisLeft().setEnabled(false);
-//        detailProgress.getAxisLeft().setDrawLabels(false);
-        final ArrayList<String> xVals = getXAxisValues(mission.taskProgress);
-        XAxis aXis = detailProgress.getXAxis();
-        aXis.setDrawGridLines(false);
-        aXis.setValueFormatter(new IAxisValueFormatter() {
-            @Override
-            public String getFormattedValue(float value, AxisBase axis) {
-                return xVals.get(0);
-            }
-        });
-        detailProgress.setData(getBarData(mission.taskProgress));
-        detailProgress.animateXY(2000, 2000);
-        detailProgress.invalidate();
 
         //Main progress
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -128,30 +110,6 @@ public class MissionAdapter extends ArrayAdapter<Mission> {
         missionMainProgressPercent.setText((int)(completePercent*100)+"%");
 
         return convertView;
-    }
-    private BarData getBarData(List<Mission.Progress> progresses) {
-        float bandwidth =5f;
-        float spaceForBar = 8f;
-        ArrayList<BarEntry> barEntrys = new ArrayList<>();
-        for(int i = 0;i<progresses.size() ; i++){
-            Mission.Progress progress = progresses.get(i);
-            float percent = (float) progress.progressTime/(float) progress.totalTime;
-            barEntrys.add(new BarEntry(i*spaceForBar,percent));
-        }
-        BarDataSet barDataSet = new BarDataSet(barEntrys,"");
-        barDataSet.setColor(context.getResources().getColor(R.color.themeLight));
-        BarData barData = new BarData(barDataSet);
-        barData.setBarWidth(bandwidth);
-
-        return barData;
-    }
-    private ArrayList<String> getXAxisValues(List<Mission.Progress> progresses) {
-        ArrayList<String> xAxis = new ArrayList<>();
-        for (Mission.Progress progress: progresses
-             ) {
-            xAxis.add(progress.taskName);
-        }
-        return xAxis;
     }
     private float getTotalCompletePercent(List<Mission.Progress> progresses){
         float percent;

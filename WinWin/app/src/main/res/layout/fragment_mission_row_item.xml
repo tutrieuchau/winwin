@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -65,7 +66,6 @@
                 android:text="Cras ipsum. Vestibulum pretium, lectus nec venenatis volutpat, purus lectus ultrices risus, a condimentum risus mi et quam. Pellentesque auctor fringilla neque"
                 android:textColor="@color/themeOff"
                 android:textSize="11sp" />
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -106,6 +106,15 @@
                 android:id="@+id/missionDetailProgress">
 
             </com.github.mikephil.charting.charts.HorizontalBarChart>
+            <com.tutrieuchau.winwin.Support.HorizontalSingleBarChart
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                app:title="Losium"
+                app:color="@color/themeLight"
+                app:percent="100"
+                app:tintColor="@color/colorShadow"
+                android:layout_below="@id/missionDetailProgress"
+                />
         </RelativeLayout>
 
         <RelativeLayout

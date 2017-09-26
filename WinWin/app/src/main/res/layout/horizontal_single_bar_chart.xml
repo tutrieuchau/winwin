@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        >
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="12sp"
+            android:layout_marginLeft="4dp"
+            android:maxWidth="80dp"
+            android:textColor="@color/black"
+            android:text="Losium im"
+            android:id="@+id/horizontalSingleBarChartTitle"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/horizontalSingleBarChartBackground"
+            android:background="@drawable/mission_progress_chart_background"
+            android:layout_toRightOf="@+id/horizontalSingleBarChartTitle"/>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/horizontalSingleBarChartTitle"
+            android:background="@color/themeLight"
+            android:id="@+id/horizontalSingleBarChartProgress"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/horizontalSingleBarChartBackground"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:text="40%"
+            android:id="@+id/horizontalSingleBarChartPercent"
+            />
+
+    </RelativeLayout>
+
+
+</merge>

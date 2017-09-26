@@ -16,9 +16,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.tutrieuchau.winwin.Model.Mission;
 import com.tutrieuchau.winwin.R;
 import com.tutrieuchau.winwin.Utils.Common;
@@ -91,10 +94,20 @@ public class MissionAdapter extends ArrayAdapter<Mission> {
         }
         //Detail Progress
         HorizontalBarChart detailProgress = (HorizontalBarChart)convertView.findViewById(R.id.missionDetailProgress);
-        BarData barData = new BarData(getDataSet(mission.taskProgress));
-        detailProgress.setData(barData);
-        detailProgress.getXAxis().setDrawGridLines(false);
-        detailProgress.getAxisLeft().setDrawGridLines(false);
+//        detailProgress.getXAxis().setEnabled(false);
+//        detailProgress.getXAxis().setDrawLabels(false);
+//        detailProgress.getAxisLeft().setEnabled(false);
+//        detailProgress.getAxisLeft().setDrawLabels(false);
+        final ArrayList<String> xVals = getXAxisValues(mission.taskProgress);
+        XAxis aXis = detailProgress.getXAxis();
+        aXis.setDrawGridLines(false);
+        aXis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return xVals.get(0);
+            }
+        });
+        detailProgress.setData(getBarData(mission.taskProgress));
         detailProgress.animateXY(2000, 2000);
         detailProgress.invalidate();
 
@@ -104,29 +117,33 @@ public class MissionAdapter extends ArrayAdapter<Mission> {
         int width = display.getWidth();
         int totalWidth = width - 20 - 20;
 
-        int completePercent = getTotalCompletePercent(mission.taskProgress);
-        int progressWidth = totalWidth*completePercent;
+        float completePercent = getTotalCompletePercent(mission.taskProgress);
+        int progressWidth = (int)(totalWidth*completePercent);
         RelativeLayout missionComplete = (RelativeLayout) convertView.findViewById(R.id.missionComplete);
         ViewGroup.LayoutParams params = missionComplete.getLayoutParams();
         params.width = progressWidth;
         missionComplete.setLayoutParams(params);
 
         TextView missionMainProgressPercent = (TextView) convertView.findViewById(R.id.missionCompleteText);
-        missionMainProgressPercent.setText(completePercent+"%");
+        missionMainProgressPercent.setText((int)(completePercent*100)+"%");
 
         return convertView;
     }
-    private BarDataSet getDataSet(List<Mission.Progress> progresses) {
+    private BarData getBarData(List<Mission.Progress> progresses) {
+        float bandwidth =5f;
+        float spaceForBar = 8f;
         ArrayList<BarEntry> barEntrys = new ArrayList<>();
-        for (Mission.Progress progress: progresses
-                ) {
+        for(int i = 0;i<progresses.size() ; i++){
+            Mission.Progress progress = progresses.get(i);
             float percent = (float) progress.progressTime/(float) progress.totalTime;
-            BarEntry barEntry = new BarEntry(percent,0);
-            barEntrys.add(barEntry);
+            barEntrys.add(new BarEntry(i*spaceForBar,percent));
         }
         BarDataSet barDataSet = new BarDataSet(barEntrys,"");
         barDataSet.setColor(context.getResources().getColor(R.color.themeLight));
-        return barDataSet;
+        BarData barData = new BarData(barDataSet);
+        barData.setBarWidth(bandwidth);
+
+        return barData;
     }
     private ArrayList<String> getXAxisValues(List<Mission.Progress> progresses) {
         ArrayList<String> xAxis = new ArrayList<>();
@@ -136,12 +153,16 @@ public class MissionAdapter extends ArrayAdapter<Mission> {
         }
         return xAxis;
     }
-    private int getTotalCompletePercent(List<Mission.Progress> progresses){
-        float percent = 0;
+    private float getTotalCompletePercent(List<Mission.Progress> progresses){
+        float percent;
+        int totalTime = 0;
+        int progressTime = 0;
         for (Mission.Progress progress: progresses
                 ) {
-            percent = percent + (float) progress.progressTime/(float) progress.totalTime;
+            totalTime = totalTime + progress.totalTime;
+            progressTime = progressTime + progress.progressTime;
         }
-        return (int)(percent*100);
+        percent = (float) progressTime/(float) totalTime;
+        return percent;
     }
 }

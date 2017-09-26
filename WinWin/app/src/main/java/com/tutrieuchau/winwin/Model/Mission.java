@@ -27,13 +27,23 @@ public class Mission {
         this.thumbnail = thumbnail;
         this.taskProgress = taskProgress;
     }
-    public class Alarm{
+    public static class Alarm{
         public boolean active;
         public int time;
+        public Alarm(boolean active,int time){
+            this.active = active;
+            this.time = time;
+        }
     }
-    public class Progress{
+    public static class Progress{
         public String taskName;
         public int totalTime;
         public int progressTime;
+
+        public Progress(String taskName, int totalTime, int progressTime) {
+            this.taskName = taskName;
+            this.totalTime = totalTime;
+            this.progressTime = progressTime;
+        }
     }
 }

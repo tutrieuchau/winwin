@@ -1,228 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
-    android:background="@drawable/background_shadow"
     android:layout_height="wrap_content">
-
-    <RelativeLayout
-        android:id="@+id/missionItemHeader"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/missionThumbnail"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn_oval"
-            android:src="@drawable/ic_graduate" />
-
-        <ImageButton
-            android:id="@+id/missionModifier"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:background="@null"
-            android:src="@drawable/ic_time_item_modifier" />
-
-        <TextView
-            android:id="@+id/missionTitle"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_shadow"
+        android:layout_height="wrap_content"
+        >
+        <RelativeLayout
+            android:id="@+id/missionItemHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/btnModifier"
-            android:layout_toRightOf="@+id/missionThumbnail"
-            android:maxLines="3"
-            android:text="Integer ut purus ac "
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/missionDetail"
-            android:layout_below="@+id/missionTitle"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@+id/btnModifier"
-            android:layout_toRightOf="@+id/missionThumbnail"
-            android:maxLines="3"
-            android:text="Cras ipsum. Vestibulum pretium, lectus nec venenatis volutpat, purus lectus ultrices risus, a condimentum risus mi et quam. Pellentesque auctor fringilla neque"
-            android:textColor="@color/themeOff"
-            android:textSize="11sp" />
+            <ImageView
+                android:id="@+id/missionThumbnail"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:background="@drawable/btn_oval"
+                android:src="@drawable/ic_graduate" />
 
-    </RelativeLayout>
+            <ImageButton
+                android:id="@+id/missionModifier"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@null"
+                android:src="@drawable/ic_time_item_modifier" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/missionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@+id/btnModifier"
+                android:layout_toRightOf="@+id/missionThumbnail"
+                android:maxLines="3"
+                android:text="Integer ut purus ac "
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/missionDetail"
+                android:layout_below="@+id/missionTitle"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@+id/btnModifier"
+                android:layout_toRightOf="@+id/missionThumbnail"
+                android:maxLines="3"
+                android:text="Cras ipsum. Vestibulum pretium, lectus nec venenatis volutpat, purus lectus ultrices risus, a condimentum risus mi et quam. Pellentesque auctor fringilla neque"
+                android:textColor="@color/themeOff"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/mission_progress_chart_background"
-            android:id="@+id/missionMainProgress"
-            >
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content">
             <RelativeLayout
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:background="@color/themeLight"
-                android:id="@+id/missionComplete"
-                >
-            </RelativeLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/missionComplete"
-                android:text="40%"
-                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/missionCompleteText"
-                />
+                android:layout_marginRight="10dp"
+                android:background="@drawable/mission_progress_chart_background"
+                android:id="@+id/missionMainProgress"
+                >
+                <RelativeLayout
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/themeLight"
+                    android:id="@+id/missionComplete"
+                    >
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/missionComplete"
+                    android:text="40%"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/missionCompleteText"
+                    />
+            </RelativeLayout>
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/missionMainProgress"
+                android:id="@+id/missionDetailProgress">
+
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
         </RelativeLayout>
-        <com.github.mikephil.charting.charts.HorizontalBarChart
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/missionMainProgress"
-            android:id="@+id/missionDetailProgress">
 
-        </com.github.mikephil.charting.charts.HorizontalBarChart>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp">
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/layout_reward"
-            android:orientation="horizontal">
+            android:layout_marginTop="15dp">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/gold_oval_background"
-                android:scaleType="fitXY"
-                android:padding="5dp"
-                android:src="@drawable/ic_color_reward" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reward :"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nulla mauris odio, vehicula in"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:id="@+id/missionReward"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp"
-            android:layout_below="@+id/layout_reward"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/gold_oval_background"
-                android:scaleType="fitXY"
-                android:padding="5dp"
-                android:src="@drawable/ic_color_alarm" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Alarm :"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
-                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:id="@+id/layout_reward"
                 android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_monday"
-                    android:layout_marginLeft="2dp"
-                    android:id="@+id/missionMon"
-                    />
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_monday"
-                    android:layout_marginLeft="2dp"
-                    android:id="@+id/missionTue"
-                    />
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_wednesday"
-                    android:layout_marginLeft="2dp"
-                    android:id="@+id/missionWed"
-                    />
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_thursday"
-                    android:layout_marginLeft="2dp"
-                    android:id="@+id/missionThu"
-                    />
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_friday"
-                    android:layout_marginLeft="2dp"
-                    android:id="@+id/missionFri"
-                    />
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_saturday"
-                    android:layout_marginLeft="2dp"
-                    android:id="@+id/missionSat"
-                    />
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_sunday"
-                    android:layout_marginLeft="2dp"
-                    android:id="@+id/missionSun"
-                    />
 
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/gold_oval_background"
+                    android:scaleType="fitXY"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_color_reward" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reward :"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="4dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nulla mauris odio, vehicula in"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/missionReward"
+                    />
             </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/layout_reward"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/gold_oval_background"
+                    android:scaleType="fitXY"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_color_alarm" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alarm :"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="4dp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_monday"
+                        android:layout_marginLeft="2dp"
+                        android:id="@+id/missionMon"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_monday"
+                        android:layout_marginLeft="2dp"
+                        android:id="@+id/missionTue"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_wednesday"
+                        android:layout_marginLeft="2dp"
+                        android:id="@+id/missionWed"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_thursday"
+                        android:layout_marginLeft="2dp"
+                        android:id="@+id/missionThu"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_friday"
+                        android:layout_marginLeft="2dp"
+                        android:id="@+id/missionFri"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_saturday"
+                        android:layout_marginLeft="2dp"
+                        android:id="@+id/missionSat"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_sunday"
+                        android:layout_marginLeft="2dp"
+                        android:id="@+id/missionSun"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

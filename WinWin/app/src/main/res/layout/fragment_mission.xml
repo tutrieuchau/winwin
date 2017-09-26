@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.tutrieuchau.winwin.Fragment.MissionFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:id="@+id/missionListView">
+
+    </ListView>
 
 </FrameLayout>

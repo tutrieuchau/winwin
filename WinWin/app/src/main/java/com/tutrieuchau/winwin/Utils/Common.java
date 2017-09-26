@@ -10,17 +10,17 @@ public class Common {
     public static int getThumbnailIcon(Utils.DEFAULT_ICON name){
         switch (name){
             case LEARNING:
-                return R.drawable.ic_learning;
+                return R.drawable.ic_graduate;
             default:
-                return R.drawable.ic_learning;
+                return R.drawable.ic_graduate;
         }
     }
     public static int getThumbnailColor(Utils.DEFAULT_ICON name){
         switch (name){
             case LEARNING:
-                return R.color.darkslateblue;
+                return R.color.themeLight;
             default:
-                return R.color.darkslateblue;
+                return R.color.themeLight;
         }
     }
 }

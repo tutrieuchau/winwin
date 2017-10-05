@@ -1,122 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="76dp">
+    android:layout_height="185dp">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_centerVertical="true"
+        android:layout_height="170dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/background_shadow"
-        >
-        <ImageView
-            android:id="@+id/reminderThumbnail"
-            android:layout_width="60dp"
-            android:layout_height="58dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="0dp"
-            android:background="@drawable/btn_rectangle"
-            android:scaleType="fitXY"
-            android:padding="15dp"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_shopping" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/reminderThumbnail"
-            android:text="Meals"
-            android:maxLines="1"
-            android:textStyle="bold"
-            android:maxWidth="200dp"
-            android:id="@+id/tvReminderTitle"
-            android:textSize="16sp"
-            android:textColor="@color/dimgray"
-            />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/reminderThumbnail"
+            android:src="@drawable/ic_graduate"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/reminderThumbnail"
+            android:maxLines="4"
+            android:maxHeight="50dp"
+            android:layout_margin="10dp"
+            android:id="@+id/reminderTitle"
+            android:text="Perspiciatis unde"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reminder_head"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="45dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="14:30"
-            android:maxLines="1"
-            android:maxWidth="200dp"
-            android:id="@+id/tvReminderStart"
-            android:textSize="12sp"
-            android:textColor="@color/dimgray"
+            android:text="12:40"
+            android:layout_alignLeft="@id/reminderTitle"
+            android:layout_below="@id/reminderTitle"
+            android:textSize="@dimen/reminder_normal"
+            android:id="@+id/reminderAlarm"
             />
         <RelativeLayout
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorShadow"
+            android:layout_marginBottom="40dp"
+            android:layout_above="@+id/reminderAlarmGroup"
+            >
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/reminderThumbnail"
-            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
+            android:id="@+id/reminderAlarmGroup"
             >
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_bag_pound"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"/>
-            <Button
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
                 android:background="@drawable/gold_oval_background"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:text="1"
-                android:textColor="@color/white"
-                android:textSize="8sp"
-                android:layout_marginRight="3dp"
-                android:id="@+id/btnBound"
-
+                android:src="@drawable/ic_color_alarm"
+                android:padding="4dp"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="@dimen/reminder_normal"
+                android:text="Remind me in 1 hour"
+                android:id="@+id/reminderAlarmBefore"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@id/reminderAlarmGroup"
+            android:background="@color/colorShadow"
+            >
 
         </RelativeLayout>
-
-        <Button
-            android:id="@+id/btnLevel"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/btn_oval"
-            android:scaleType="fitEnd"
-            android:text="1"
-            android:textColor="@color/white"
-            android:src="@drawable/ic_bell"
-            tools:scaleType="fitCenter"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp"
-            />
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/switchActive"
-            android:layout_centerVertical="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toStartOf="@+id/btnModifier" />
-
-        <ImageButton
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_above="@id/reminderAlarmGroup"
+            >
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/gold_oval_background"
+                android:src="@drawable/ic_color_reward"
+                android:padding="4dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="At vero eos et accusamus"
+                android:id="@+id/reminderReward"
+                android:textSize="@dimen/reminder_normal"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/btnModifier"
-            android:layout_marginRight="10dp"
             android:src="@drawable/ic_time_item_modifier"
-            android:background="@null"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
             />
     </RelativeLayout>
 

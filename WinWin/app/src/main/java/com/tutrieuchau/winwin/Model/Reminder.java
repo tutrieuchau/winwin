@@ -7,20 +7,20 @@ import com.tutrieuchau.winwin.Utils.Utils;
  */
 
 public class Reminder {
-    public int icon;
-    public int color;
+    public int thumbnail;
     public String title;
-    public String startTime;
-    public Boolean bell;
-    public int bound;
-    public Utils.REMINDER_LEVEL level;
-    public Reminder(String title,String startTime,int icon,int color,int bound,Utils.REMINDER_LEVEL level){
+    public String reward;
+    public int time;
+    public enum ALARM_TIME{INTIME,BEFORE5,BEFORE10,BEFORE30,BEFORE45,BEFORE60}
+    public boolean isComplete;
+    public ALARM_TIME alarmBefore;
+
+    public Reminder(int thumbnail, String title, String reward, int time, ALARM_TIME alarmBefore, boolean isComplete) {
+        this.thumbnail = thumbnail;
         this.title = title;
-        this.startTime = startTime;
-        this.color = color;
-        this.icon = icon;
-        this.bell = true;
-        this.bound = bound;
-        this.level = level;
+        this.reward = reward;
+        this.time = time;
+        this.alarmBefore = alarmBefore;
+        this.isComplete = isComplete;
     }
 }

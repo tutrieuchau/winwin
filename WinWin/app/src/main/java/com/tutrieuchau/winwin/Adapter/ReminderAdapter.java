@@ -18,6 +18,7 @@ import com.tutrieuchau.winwin.Model.Reminder;
 import com.tutrieuchau.winwin.Model.TimeSpend;
 import com.tutrieuchau.winwin.Model.Todo;
 import com.tutrieuchau.winwin.R;
+import com.tutrieuchau.winwin.Utils.Common;
 import com.tutrieuchau.winwin.Utils.Utils;
 
 import java.util.ArrayList;
@@ -44,49 +45,17 @@ public class ReminderAdapter extends ArrayAdapter<Reminder> {
         }
         //Thumbnail
         ImageView thumbnail = (ImageView) convertView.findViewById(R.id.reminderThumbnail);
-        thumbnail.setImageResource(reminder.icon);
-        Drawable drawable = context.getResources().getDrawable(R.drawable.btn_rectangle);
-        drawable.setColorFilter(context.getResources().getColor(reminder.color), PorterDuff.Mode.SRC_IN);
-        thumbnail.setBackgroundDrawable(drawable);
+        thumbnail.setImageResource(reminder.thumbnail);
 
         //Title
-        TextView title = (TextView) convertView.findViewById(R.id.tvReminderTitle);
+        TextView title = (TextView) convertView.findViewById(R.id.reminderTitle);
         title.setText(reminder.title);
         // Start Time
-        TextView startTime = (TextView) convertView.findViewById(R.id.tvReminderStart);
-        startTime.setText(reminder.startTime);
+        TextView startTime = (TextView) convertView.findViewById(R.id.reminderAlarm);
+        startTime.setText(Common.getStringTimeByTime(reminder.time));
 
-        //Bound
-        Button bound = (Button) convertView.findViewById(R.id.btnBound);
-        bound.setText(String.valueOf(reminder.bound));
-
-        //Active
-        Switch switchActive = (Switch) convertView.findViewById(R.id.switchActive);
-        switchActive.setChecked(reminder.bell);
-
-        //Level
-        Button level = (Button) convertView.findViewById(R.id.btnLevel);
-        Drawable ovalDrawable = context.getResources().getDrawable(R.drawable.btn_oval);
-        switch (reminder.level){
-            case HIGH:
-                ovalDrawable.setColorFilter(context.getResources().getColor(R.color.red), PorterDuff.Mode.SRC_IN);
-                level.setText("1");
-                break;
-            case NORMAL:
-                ovalDrawable.setColorFilter(context.getResources().getColor(R.color.gold), PorterDuff.Mode.SRC_IN);
-                level.setText("2");
-                break;
-            case LOW:
-                ovalDrawable.setColorFilter(context.getResources().getColor(R.color.green), PorterDuff.Mode.SRC_IN);
-                level.setText("3");
-                break;
-            default:
-                ovalDrawable.setColorFilter(context.getResources().getColor(R.color.green), PorterDuff.Mode.SRC_IN);
-                level.setText("3");
-                break;
-        }
-        level.setBackgroundDrawable(ovalDrawable);
-
+        TextView reward = (TextView) convertView.findViewById(R.id.reminderReward);
+        reward.setText(reminder.reward);
 
         return convertView;
     }

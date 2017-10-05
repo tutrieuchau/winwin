@@ -23,4 +23,17 @@ public class Common {
                 return R.color.themeLight;
         }
     }
+    // Reminder fragment
+    public static String getStringTimeByTime(int time){
+        String result;
+        int hour = time/60;
+            if(hour < 10){
+                result = "0"+ hour + ":";
+            }else{
+                result = hour + ":";
+            }
+        int minute = time%60;
+        result = result + minute;
+        return result;
+    }
 }

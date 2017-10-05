@@ -5,7 +5,10 @@
     <item android:drawable="@drawable/shadow_20dip"/>
     <item
         android:drawable="@drawable/round_background"
-        android:bottom="4px" />
+        android:bottom="8px"
+        android:left="3px"
+        android:right="3px"
+        android:top="3px"/>
 
 
 </layer-list>

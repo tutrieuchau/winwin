@@ -75,11 +75,15 @@ public class ReminderFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reminder, container, false);
         ListView listView = (ListView) view.findViewById(R.id.reminderListView);
-        Reminder reminder = new Reminder("Go to the market with Jon and then go to Maria Home","14:30", R.drawable.ic_shopping,R.color.red,3, Utils.REMINDER_LEVEL.LOW);
+        Reminder reminder = new Reminder(R.drawable.ic_graduate,"Go to the market","Travel to Fushi",770,Reminder.ALARM_TIME.INTIME,false);
+        Reminder reminder2 = new Reminder(R.drawable.ic_color_reward,"Go to the Bank","10 bound",870,Reminder.ALARM_TIME.INTIME,false);
         ArrayList<Reminder> arrayList = new ArrayList<>();
         arrayList.add(reminder);
-        arrayList.add(new Reminder("Bài tập tiếng Nhật","20:30", R.drawable.ic_learning,R.color.darkgreen,1, Utils.REMINDER_LEVEL.NORMAL));
-        arrayList.add(new Reminder("Cắt Tóc","16:14", R.drawable.ic_tag_faces,R.color.blue,1, Utils.REMINDER_LEVEL.HIGH));
+        arrayList.add(reminder2);
+        arrayList.add(reminder);
+        arrayList.add(reminder2);
+        arrayList.add(reminder);
+        arrayList.add(reminder2);
         ReminderAdapter reminderAdapter = new ReminderAdapter(this.getContext(),arrayList);
         listView.setAdapter(reminderAdapter);
         return view;

@@ -3,15 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.tutrieuchau.winwin.Fragment.ReminderFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/reminderListView"
-        android:divider="@null"
-        android:dividerHeight="0dp"
+        android:orientation="vertical"
         >
-    </ListView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/pageHeader"
+            >
 
+        </RelativeLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/reminderListView"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            >
+        </ListView>
+    </LinearLayout>
 </FrameLayout>

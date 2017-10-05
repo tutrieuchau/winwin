@@ -5,4 +5,10 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="reminder_head">22sp</dimen>
+    <dimen name="reminder_normal">14sp</dimen>
+    <dimen name="reminder_add_weekday">35sp</dimen>
+    <dimen name="reminder_add_day">18sp</dimen>
+    <dimen name="reminder_add_title">14sp</dimen>
+
 </resources>

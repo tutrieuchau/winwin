@@ -13,4 +13,5 @@ public class Utils {
     public static final String[] TOOL_BAR_TITLE ={"","","","",""};
     public enum REMINDER_LEVEL{HIGH,NORMAL,LOW}
     public enum DEFAULT_ICON{LEARNING}
+    public static final String[] MONTH_SHORT_EN = {"JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"};
 }

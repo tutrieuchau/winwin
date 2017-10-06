@@ -1,5 +1,6 @@
 package com.tutrieuchau.winwin.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Switch;
 
 import com.tutrieuchau.winwin.Fragment.AnalyseFragment;
 import com.tutrieuchau.winwin.Fragment.HelpFragment;
@@ -52,8 +54,20 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                switch (navItemIndex){
+                    case 0:
+                        break;
+                    case 1:
+                        Intent intent = new Intent(HomeActivity.this,AddReminderActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        break;
+                }
             }
         });
 

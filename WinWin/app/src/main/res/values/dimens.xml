@@ -7,8 +7,10 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="reminder_head">22sp</dimen>
     <dimen name="reminder_normal">14sp</dimen>
-    <dimen name="reminder_add_weekday">35sp</dimen>
+    <dimen name="reminder_add_weekday">40sp</dimen>
     <dimen name="reminder_add_day">18sp</dimen>
-    <dimen name="reminder_add_title">14sp</dimen>
+    <dimen name="reminder_add_title">18sp</dimen>
+    <dimen name="reminder_add_title_editext">20sp</dimen>
+    <dimen name="reminder_add_title_time">18sp</dimen>
 
 </resources>

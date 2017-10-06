@@ -42,6 +42,21 @@
     <string name="title_activity_add_edit_reminder">AddEditReminderActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- Reminder Add Spinner -->
+    <string-array name="reminder_reward_spinner">
+        <item>Bounds</item>
+        <item>Other</item>
+    </string-array>
 
-
+    <string-array name="reminder_time_before_spinner">
+        <item>Not Alarm</item>
+        <item>In Time</item>
+        <item>Before 5 minute</item>
+        <item>Before 10 minute</item>
+        <item>Before 15 minute</item>
+        <item>Before 30 minute</item>
+        <item>Before 45 minute</item>
+        <item>Before 1 hour</item>
+        <item>Before 2 hour</item>
+    </string-array>
 </resources>

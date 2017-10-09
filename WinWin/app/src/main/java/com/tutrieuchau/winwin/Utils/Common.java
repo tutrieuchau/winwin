@@ -36,7 +36,11 @@ public class Common {
                 result = hour + ":";
             }
         int minute = time%60;
-        result = result + minute;
+            if(minute < 10){
+                result = result + "0" + minute;
+            }else{
+                result = result + minute;
+            }
         return result;
     }
     public static String getMonthShortFromDate(Date date){
@@ -54,5 +58,15 @@ public class Common {
         }else {
             return day + "th";
         }
+    }
+    public static String getCurentTimeString(){
+        Calendar calendar = Calendar.getInstance();
+        int time = calendar.get(Calendar.HOUR_OF_DAY)*60 + calendar.get(Calendar.MINUTE);
+        return getStringTimeByTime(time);
+    }
+    public static int getTimeByString(String strTime){
+        String[] timeStrs = strTime.split(":");
+        int time = Integer.valueOf(timeStrs[0])*60 + Integer.valueOf(timeStrs[1]);
+        return time;
     }
 }

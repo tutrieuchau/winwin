@@ -14,6 +14,7 @@ import com.tutrieuchau.winwin.Adapter.TodoAdapter;
 import com.tutrieuchau.winwin.Model.Reminder;
 import com.tutrieuchau.winwin.Model.Todo;
 import com.tutrieuchau.winwin.R;
+import com.tutrieuchau.winwin.Service.SharePreferencesService;
 import com.tutrieuchau.winwin.Utils.Utils;
 
 import java.util.ArrayList;
@@ -35,7 +36,9 @@ public class ReminderFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private SharePreferencesService sharePreferencesService;
+    private ArrayList<Reminder> reminders;
+    private ReminderAdapter reminderAdapter;
     private OnFragmentInteractionListener mListener;
 
     public ReminderFragment() {
@@ -72,19 +75,12 @@ public class ReminderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        sharePreferencesService = new SharePreferencesService(this.getActivity());
+        reminders = sharePreferencesService.getReminderList();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reminder, container, false);
         ListView listView = (ListView) view.findViewById(R.id.reminderListView);
-        Reminder reminder = new Reminder(R.drawable.ic_graduate,"Go to the market","Travel to Fushi",770,Reminder.ALARM_TIME.INTIME,false);
-        Reminder reminder2 = new Reminder(R.drawable.ic_color_reward,"Go to the Bank","10 bound",870,Reminder.ALARM_TIME.INTIME,false);
-        ArrayList<Reminder> arrayList = new ArrayList<>();
-        arrayList.add(reminder);
-        arrayList.add(reminder2);
-        arrayList.add(reminder);
-        arrayList.add(reminder2);
-        arrayList.add(reminder);
-        arrayList.add(reminder2);
-        ReminderAdapter reminderAdapter = new ReminderAdapter(this.getContext(),arrayList);
+        reminderAdapter = new ReminderAdapter(this.getContext(),reminders);
         listView.setAdapter(reminderAdapter);
         return view;
     }
@@ -126,5 +122,14 @@ public class ReminderFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onResume() {
+        reminderAdapter.clear();
+        reminders = sharePreferencesService.getReminderList();
+        reminderAdapter.notifyDataSetChanged();
+        super.onResume();
+
     }
 }

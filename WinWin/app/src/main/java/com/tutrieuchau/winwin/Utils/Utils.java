@@ -14,4 +14,14 @@ public class Utils {
     public enum REMINDER_LEVEL{HIGH,NORMAL,LOW}
     public enum DEFAULT_ICON{LEARNING}
     public static final String[] MONTH_SHORT_EN = {"JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"};
+    public static final Integer[] LIST_COLOR_ICON = {R.drawable.ic_color_alarm,R.drawable.ic_color_audio_book,R.drawable.ic_color_baby,R.drawable.ic_color_badminton,R.drawable.ic_color_book,
+            R.drawable.ic_color_bowling,R.drawable.ic_color_cafe,R.drawable.ic_color_car1,R.drawable.ic_color_cat,R.drawable.ic_color_check_book,
+            R.drawable.ic_color_contruct,R.drawable.ic_color_cook1,R.drawable.ic_color_cook2,R.drawable.ic_color_cup,R.drawable.ic_color_cycling,
+            R.drawable.ic_color_dog,R.drawable.ic_color_flower,R.drawable.ic_color_game1,R.drawable.ic_color_game2,R.drawable.ic_color_gift,
+            R.drawable.ic_color_house_keeper1,R.drawable.ic_color_internet,R.drawable.ic_color_mail,R.drawable.ic_color_meal,R.drawable.ic_color_music,
+            R.drawable.ic_color_music1,R.drawable.ic_color_paint,R.drawable.ic_color_party,R.drawable.ic_color_phone,R.drawable.ic_color_play,
+            R.drawable.ic_color_radio,R.drawable.ic_color_relax,R.drawable.ic_color_report,R.drawable.ic_color_retaurant,R.drawable.ic_color_reward,
+            R.drawable.ic_color_school,R.drawable.ic_color_shopping,R.drawable.ic_color_sleep,R.drawable.ic_color_sleep1,R.drawable.ic_color_soccer,
+            R.drawable.ic_color_tooth,R.drawable.ic_color_traning,R.drawable.ic_color_trip,R.drawable.ic_color_tv,R.drawable.ic_color_tv2,
+            R.drawable.ic_color_work,R.drawable.ic_color_yoga,R.drawable.ic_bell,R.drawable.ic_graduate,R.drawable.ic_reward};
 }

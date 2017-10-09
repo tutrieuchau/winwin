@@ -25,14 +25,14 @@
                 android:layout_alignParentLeft="true"
                 android:src="@drawable/ic_back"
                 android:id="@+id/reminderAddBack"
-                android:padding="8dp"
+                android:padding="4dp"
                 />
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_save"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:id="@+id/reminderAddSave"
                 />
             <TextView
@@ -125,7 +125,7 @@
             android:layout_height="70dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_graduate"
+            android:src="@drawable/ic_color_paint"
             android:id="@+id/reminderAddThumbnail"
             />
         <EditText
@@ -136,7 +136,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:fontFamily="casual"
-            android:id="@+id/ReminderAddTitle"
+            android:id="@+id/reminderAddTitle"
             android:textSize="@dimen/reminder_add_title_editext"
             />
     </RelativeLayout>
@@ -215,21 +215,23 @@
                 android:layout_height="50dp">
 
                 <EditText
-                    android:layout_width="35dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="55dp"
                     android:fontFamily="casual"
                     android:maxLength="3"
                     android:text="0"
                     android:textAlignment="center"
+                    android:inputType="number"
                     android:textStyle="bold"
+                    android:longClickable="false"
                     android:id="@+id/reminderAddRewardCoin"
                     android:textSize="@dimen/reminder_add_title_time" />
 
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_marginLeft="88dp"
+                    android:layout_toRightOf="@id/reminderAddRewardCoin"
                     android:layout_marginTop="6dp"
                     android:scaleType="fitXY"
                     android:id="@+id/reminderAddCoinIcon"

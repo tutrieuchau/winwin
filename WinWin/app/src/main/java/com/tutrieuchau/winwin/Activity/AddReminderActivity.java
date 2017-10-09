@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,7 +14,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.tutrieuchau.winwin.Model.Reminder;
 import com.tutrieuchau.winwin.R;
+import com.tutrieuchau.winwin.Service.SharePreferencesService;
+import com.tutrieuchau.winwin.Support.SelectIconDialog;
 import com.tutrieuchau.winwin.Utils.Common;
 import com.tutrieuchau.winwin.Utils.Utils;
 
@@ -23,6 +25,7 @@ import java.util.Calendar;
 
 public class AddReminderActivity extends AppCompatActivity implements View.OnClickListener{
     private LinearLayout timeGroup;
+    private EditText title;
     private TextView time;
     private ImageView thumbnail;
     private Spinner timeBefore;
@@ -38,17 +41,23 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
     private ImageView back;
     private ImageView save;
     private Animation fadeOutToRight;
+    private SharePreferencesService sharePreferencesService;
+
+    SelectIconDialog selectItemDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_add_reminder);
         targetCalendar = Calendar.getInstance();
         //init
+        sharePreferencesService = new SharePreferencesService(this);
+        title = (EditText) findViewById(R.id.reminderAddTitle);
         timeGroup = (LinearLayout) findViewById(R.id.reminderAddTimeGroup);
         timeGroup.setOnClickListener(this);
         time = (TextView)findViewById(R.id.reminderAddTime);
+        time.setText(Common.getCurentTimeString());
         thumbnail = (ImageView) findViewById(R.id.reminderAddThumbnail);
+        thumbnail.setTag(R.drawable.ic_color_paint);
         thumbnail.setOnClickListener(this);
         timeBefore = (Spinner) findViewById(R.id.reminderAddTimeBefore);
         rewardType = (Spinner) findViewById(R.id.reminderAddRewardTypeSpinner);
@@ -102,7 +111,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
                 TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        time.setText(hourOfDay+":"+minute);
+                        time.setText(Common.getStringTimeByTime(hourOfDay*60+minute));
                     }
                 }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
                 timePickerDialog.show();
@@ -115,7 +124,15 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.reminderAddThumbnail:
-
+                selectItemDialog = new SelectIconDialog(this, new SelectIconDialog.SelectIconDialogCallBack() {
+                    @Override
+                    public void onSelected(int icon) {
+                        thumbnail.setImageResource(icon);
+                        thumbnail.setTag(icon);
+                        selectItemDialog.dismiss();
+                    }
+                });
+                selectItemDialog.show();
                 break;
             case R.id.reminderAddNextDay:
                 monthDayGroup.startAnimation(fadeOutToRight);
@@ -128,8 +145,14 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
 
     private void onSaveReminder(){
         //ToDo: on Save Reminder
+        Reminder reminder = new Reminder((int)thumbnail.getTag(),title.getText().toString().trim(),rewardOther.getText().toString().trim(),
+                Common.getTimeByString(time.getText().toString().trim()), Reminder.ALARM_TIME.BEFORE5,false);
+        sharePreferencesService.addItemToReminderList(reminder);
     }
 
+    private void onError(String msg){
+
+    }
 
 
 }

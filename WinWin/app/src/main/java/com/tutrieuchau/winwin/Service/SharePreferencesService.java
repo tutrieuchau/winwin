@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.tutrieuchau.winwin.Model.Reminder;
 import com.tutrieuchau.winwin.Model.TimeSpend;
 import com.tutrieuchau.winwin.Model.Todo;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  */
 
 public class SharePreferencesService {
-    private final String TODO_PREFERENCE = "preferenceTodo";
+    private final String REMINDER_PREFERENCE = "preferenceReminder";
     private final String TIME_SPEND_PREFERENCE = "preferenceTimeSpend";
     private Gson gson;
     private SharedPreferences sharedPreferences;
@@ -25,15 +26,39 @@ public class SharePreferencesService {
         sharedPreferences = context.getPreferences(Context.MODE_PRIVATE);
         gson = new Gson();
     }
-    public ArrayList<Todo> getTodoList(){
-        String json = sharedPreferences.getString(TODO_PREFERENCE,null);
-        Type type  = new TypeToken<ArrayList<Todo>>(){}.getType();
-        ArrayList<Todo> todoArrayList = gson.fromJson(json,type);
-        return  todoArrayList;
+    public void insertReminderList(ArrayList<Reminder> reminders){
+        Gson gson = new Gson();
+        String json = gson.toJson(reminders);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(REMINDER_PREFERENCE,json);
+        editor.commit();
     }
-    public void insertTodoList(ArrayList<Todo> todoList){
+    public ArrayList<Reminder> getReminderList(){
+        String json = sharedPreferences.getString(REMINDER_PREFERENCE,null);
+        if(json== null){
+            return new ArrayList<>();
+        }
+        Type type  = new TypeToken<ArrayList<Reminder>>(){}.getType();
+        ArrayList<Reminder> reminderList = gson.fromJson(json,type);
+        return reminderList;
+    }
+    public void updateReminderList(int position,Reminder reminder){
+        ArrayList<Reminder> reminderList = getReminderList();
+        reminderList.remove(position);
+        reminderList.add(position,reminder);
+        insertReminderList(reminderList);
+    }
+    public void addItemToReminderList(Reminder reminder){
+        ArrayList<Reminder> reminderList = getReminderList();
+        reminderList.add(reminder);
+        insertReminderList(reminderList);
+    }
+    public void removeItemInReminderList(int position){
+        ArrayList<Reminder> reminderList = getReminderList();
+        reminderList.remove(position);
+        insertReminderList(reminderList);
+    }
 
-    }
     //SpendTime Service
     public void insertSpendTimeList(ArrayList<TimeSpend> timeSpends){
         Gson gson = new Gson();

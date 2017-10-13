@@ -50,7 +50,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_add_reminder);
         targetCalendar = Calendar.getInstance();
         //init
-        sharePreferencesService = new SharePreferencesService(this);
+        sharePreferencesService = new SharePreferencesService(getApplicationContext());
         title = (EditText) findViewById(R.id.reminderAddTitle);
         timeGroup = (LinearLayout) findViewById(R.id.reminderAddTimeGroup);
         timeGroup.setOnClickListener(this);
@@ -107,13 +107,13 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         int id = v.getId();
         switch (id){
             case R.id.reminderAddTimeGroup:
-                Calendar calendar = Calendar.getInstance();
+                int timeInt = Common.getTimeByString(this.time.getText().toString().trim());
                 TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         time.setText(Common.getStringTimeByTime(hourOfDay*60+minute));
                     }
-                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+                }, timeInt/60, timeInt%60, true);
                 timePickerDialog.show();
                 break;
             case R.id.reminderAddBack:
@@ -149,7 +149,6 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
                 Common.getTimeByString(time.getText().toString().trim()), Reminder.ALARM_TIME.BEFORE5,false);
         sharePreferencesService.addItemToReminderList(reminder);
     }
-
     private void onError(String msg){
 
     }

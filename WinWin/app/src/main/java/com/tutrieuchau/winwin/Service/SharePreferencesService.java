@@ -1,14 +1,13 @@
 package com.tutrieuchau.winwin.Service;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tutrieuchau.winwin.Model.Reminder;
 import com.tutrieuchau.winwin.Model.TimeSpend;
-import com.tutrieuchau.winwin.Model.Todo;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -22,8 +21,8 @@ public class SharePreferencesService {
     private final String TIME_SPEND_PREFERENCE = "preferenceTimeSpend";
     private Gson gson;
     private SharedPreferences sharedPreferences;
-    public SharePreferencesService(Activity context){
-        sharedPreferences = context.getPreferences(Context.MODE_PRIVATE);
+    public SharePreferencesService(Context context){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         gson = new Gson();
     }
     public void insertReminderList(ArrayList<Reminder> reminders){
@@ -70,7 +69,7 @@ public class SharePreferencesService {
     public ArrayList<TimeSpend> getSpendTimeList(){
         String json = sharedPreferences.getString(TIME_SPEND_PREFERENCE,null);
         if(json== null){
-            return new ArrayList<TimeSpend>();
+            return new ArrayList<>();
         }
         Type type  = new TypeToken<ArrayList<TimeSpend>>(){}.getType();
         ArrayList<TimeSpend> spendTimeList = gson.fromJson(json,type);

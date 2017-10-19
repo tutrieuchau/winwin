@@ -44,7 +44,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <!-- Reminder Add Spinner -->
     <string-array name="reminder_reward_spinner">
-        <item>Bounds</item>
+        <item>Coin</item>
         <item>Other</item>
     </string-array>
 

@@ -4,7 +4,10 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -40,6 +43,7 @@ public class ReminderFragment extends Fragment {
     private ArrayList<Reminder> reminders;
     private ReminderAdapter reminderAdapter;
     private OnFragmentInteractionListener mListener;
+    private ListView listView;
 
     public ReminderFragment() {
         // Required empty public constructor
@@ -79,8 +83,23 @@ public class ReminderFragment extends Fragment {
         reminders = sharePreferencesService.getReminderList();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reminder, container, false);
-        ListView listView = (ListView) view.findViewById(R.id.reminderListView);
+        listView = (ListView) view.findViewById(R.id.reminderListView);
         reminderAdapter = new ReminderAdapter(this.getContext(),reminders);
+        reminderAdapter.setOnItemSelectedListener(new ReminderAdapter.ReminderAdapterOnItemSelectListener() {
+            @Override
+            public void onItemSelectedListener(ReminderAdapter.POPUPITEM type, int position) {
+                switch (type){
+                    case DONE:
+                        break;
+                    case EDIT:
+                        break;
+                    case DELETE:
+                        sharePreferencesService.removeItemInSpendTimeList(position);
+                        reloadListView();
+                        break;
+                }
+            }
+        });
         listView.setAdapter(reminderAdapter);
         return view;
     }
@@ -95,12 +114,6 @@ public class ReminderFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
     }
 
     @Override
@@ -126,10 +139,34 @@ public class ReminderFragment extends Fragment {
 
     @Override
     public void onResume() {
-        reminderAdapter.clear();
         reminders = sharePreferencesService.getReminderList();
-        reminderAdapter.notifyDataSetChanged();
+        if(reminderAdapter == null){
+            reminderAdapter = new ReminderAdapter(this.getActivity(),reminders);
+            listView.setAdapter(reminderAdapter);
+        }else{
+            reminderAdapter.clear();
+            reminderAdapter.addAll(reminders);
+            reminderAdapter.notifyDataSetChanged();
+        }
         super.onResume();
+    }
+    private void reloadListView(){
+        reminders = sharePreferencesService.getReminderList();
+        reminderAdapter.clear();
+        reminderAdapter.addAll(reminders);
+        reminderAdapter.notifyDataSetChanged();
+    }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = this.getActivity().getMenuInflater();
+        inflater.inflate(R.menu.reminder_item_menu,menu);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.reminder_item_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

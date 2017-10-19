@@ -1,5 +1,6 @@
 package com.tutrieuchau.winwin.Utils;
 
+import com.tutrieuchau.winwin.Model.Reminder;
 import com.tutrieuchau.winwin.R;
 
 import java.util.Calendar;
@@ -68,5 +69,25 @@ public class Common {
         String[] timeStrs = strTime.split(":");
         int time = Integer.valueOf(timeStrs[0])*60 + Integer.valueOf(timeStrs[1]);
         return time;
+    }
+    public static String getAlarmBeforeTextFromEnum(Reminder.ALARM_TIME alarm){
+        switch (alarm){
+            case NOT_ALARM:
+                return "Not Alarm";
+            case INTIME:
+                return "In Time";
+            case BEFORE5:
+                return "Before 5 Minute";
+            case BEFORE10:
+                return "Before 10 Minute";
+            case BEFORE30:
+                return "Before 30 Minute";
+            case BEFORE45:
+                return "Before 45 Minute";
+            case BEFORE60:
+                return "Before 60 Minute";
+            default:
+                return "Not Alarm";
+        }
     }
 }

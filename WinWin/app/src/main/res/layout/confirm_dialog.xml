@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rectangle_white"
+    >
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_warning_info"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="casual"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:text="Are You Sure?"
+        android:textColor="@color/black"
+        android:textSize="@dimen/reminder_add_title"
+        android:id="@+id/confirmDialogTitle"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center"
+        android:fontFamily="casual"
+        android:text="You will not able to restore this Reminder!"
+        android:textStyle="bold"
+        android:textSize="@dimen/reminder_normal"
+        android:id="@+id/confirmDialogMessage"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/confirmDialogCancel"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_black"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="No, cancel pls"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/rectangle_red"
+            android:layout_marginLeft="10dp"
+            android:text="Yes, delete it!"
+            android:textStyle="bold"
+            android:fontFamily="casual"
+            android:id="@+id/confirmDialogAgree"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+</LinearLayout>

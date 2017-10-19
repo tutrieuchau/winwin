@@ -1,5 +1,6 @@
 package com.tutrieuchau.winwin.Utils;
 
+import com.tutrieuchau.winwin.Model.Reminder;
 import com.tutrieuchau.winwin.R;
 
 /**
@@ -13,6 +14,7 @@ public class Utils {
     public static final String[] TOOL_BAR_TITLE ={"","","","",""};
     public enum REMINDER_LEVEL{HIGH,NORMAL,LOW}
     public enum DEFAULT_ICON{LEARNING}
+    public  static final Reminder.ALARM_TIME[] ALARM_TIME_ARRAY = {Reminder.ALARM_TIME.NOT_ALARM,Reminder.ALARM_TIME.INTIME,Reminder.ALARM_TIME.BEFORE5,Reminder.ALARM_TIME.BEFORE10,Reminder.ALARM_TIME.BEFORE30,Reminder.ALARM_TIME.BEFORE45,Reminder.ALARM_TIME.BEFORE60};
     public static final String[] MONTH_SHORT_EN = {"JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"};
     public static final Integer[] LIST_COLOR_ICON = {R.drawable.ic_color_alarm,R.drawable.ic_color_audio_book,R.drawable.ic_color_baby,R.drawable.ic_color_badminton,R.drawable.ic_color_book,
             R.drawable.ic_color_bowling,R.drawable.ic_color_cafe,R.drawable.ic_color_car1,R.drawable.ic_color_cat,R.drawable.ic_color_check_book,

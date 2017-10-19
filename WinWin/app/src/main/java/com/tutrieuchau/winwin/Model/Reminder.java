@@ -11,16 +11,16 @@ public class Reminder {
     public String title;
     public String reward;
     public int time;
-    public enum ALARM_TIME{INTIME,BEFORE5,BEFORE10,BEFORE30,BEFORE45,BEFORE60}
+    public enum ALARM_TIME{NOT_ALARM,INTIME,BEFORE5,BEFORE10,BEFORE30,BEFORE45,BEFORE60}
     public boolean isComplete;
     public ALARM_TIME alarmBefore;
 
-    public Reminder(int thumbnail, String title, String reward, int time, ALARM_TIME alarmBefore, boolean isComplete) {
+    public Reminder(int thumbnail, String title, String reward, int time, ALARM_TIME alarmBefore) {
         this.thumbnail = thumbnail;
         this.title = title;
         this.reward = reward;
         this.time = time;
         this.alarmBefore = alarmBefore;
-        this.isComplete = isComplete;
+        isComplete = false;
     }
 }

@@ -3,9 +3,11 @@ package com.tutrieuchau.winwin.Activity;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -80,24 +82,27 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         save.setOnClickListener(this);
         // init Local
         final ImageView coinIcon = (ImageView) findViewById(R.id.reminderAddCoinIcon);
-//        rewardType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                if(position == 1){
-//                    coin.setVisibility(View.GONE);
-//                    coinIcon.setVisibility(View.GONE);
-//
-//                    rewardOther.setVisibility(View.VISIBLE);
-//                }else {
-//                    rewardOther.setVisibility(View.GONE);
-//
-//                    coin.setVisibility(View.VISIBLE);
-//                    coinIcon.setVisibility(View.VISIBLE);
-//                }
-//            }
-//        });
+        rewardType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 1){
+                    coin.setVisibility(View.GONE);
+                    coinIcon.setVisibility(View.GONE);
 
+                    rewardOther.setVisibility(View.VISIBLE);
+                }else {
+                    rewardOther.setVisibility(View.GONE);
 
+                    coin.setVisibility(View.VISIBLE);
+                    coinIcon.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Do nothing
+            }
+        });
         //Load Animation
         fadeOutToRight = AnimationUtils.loadAnimation(this,R.anim.out_to_right);
     }
@@ -145,8 +150,14 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
 
     private void onSaveReminder(){
         //ToDo: on Save Reminder
-        Reminder reminder = new Reminder((int)thumbnail.getTag(),title.getText().toString().trim(),rewardOther.getText().toString().trim(),
-                Common.getTimeByString(time.getText().toString().trim()), Reminder.ALARM_TIME.BEFORE5,false);
+        String reward;
+        if(rewardType.getSelectedItemPosition() == 0){
+            reward = coin.getText().toString().trim() + "Coin";
+        }else{
+            reward = rewardOther.getText().toString().trim();
+        }
+        Reminder reminder = new Reminder((int)thumbnail.getTag(),title.getText().toString().trim(),reward,
+                Common.getTimeByString(time.getText().toString().trim()),Utils.ALARM_TIME_ARRAY[timeBefore.getSelectedItemPosition()]);
         sharePreferencesService.addItemToReminderList(reminder);
     }
     private void onError(String msg){

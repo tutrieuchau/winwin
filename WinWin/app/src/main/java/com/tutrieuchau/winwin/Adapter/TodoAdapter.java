@@ -88,7 +88,6 @@ public class TodoAdapter extends ArrayAdapter<Todo> {
         popupWindow.setContentView(layout);
         popupWindow.setWidth(200);
         popupWindow.setHeight(100);
-
         popupWindow.showAtLocation(layout, Gravity.NO_GRAVITY,point.x,point.y);
     }
 }
